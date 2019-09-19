@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Master;
 use App\Outfit;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class OutfitController extends Controller
      */
     public function create()
     {
-        //
+        $masters = Master::all();
+        return view('outfit.create', ['masters' => $masters]);
     }
 
     /**
@@ -35,7 +37,14 @@ class OutfitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $outfit = new Outfit;
+        $outfit->type = $request->outfit_type;
+        $outfit->color = $request->outfit_color;
+        $outfit->size = $request->outfit_size;
+        $outfit->about = $request->outfit_about;
+        $outfit->master_id = $request->master_id;
+        $outfit->save();
+        return redirect()->route('outfit.index');
     }
 
     /**
