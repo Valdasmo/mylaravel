@@ -15,7 +15,8 @@ class OutfitController extends Controller
      */
     public function index()
     {
-        //
+        $outfits = Outfit::all();
+        return view('outfit.index', ['outfits' => $outfits]);
     }
 
     /**
@@ -66,7 +67,8 @@ class OutfitController extends Controller
      */
     public function edit(Outfit $outfit)
     {
-        //
+        $masters = Master::all();
+        return view('outfit.edit', ['outfit' => $outfit, 'masters' => $masters]);
     }
 
     /**

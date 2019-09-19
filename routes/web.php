@@ -36,7 +36,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['prefix' => 'master'], function () {
+Route::group(['prefix' => 'masters'], function () {
     Route::get('', 'MasterController@index')->name('master.index');
     Route::get('create', 'MasterController@create')->name('master.create');
     Route::post('store', 'MasterController@store')->name('master.store');
