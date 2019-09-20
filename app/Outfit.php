@@ -8,7 +8,7 @@ class Outfit extends Model
 {
     public function outfitMaster()
     {
-        return $this->belongsTo('App\Master', 'author_id', 'id');
+        return $this->belongsTo('App\Master', 'master_id', 'id');
     }
  
 }
