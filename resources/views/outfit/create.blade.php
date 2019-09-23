@@ -27,7 +27,7 @@
         <small class="form-text text-muted">Kažkoks parašymas.</small>
     
         <label>Drabužio aprašymas:</label>
-        <textarea class="form-control" name="outfit_about"></textarea>
+        <textarea class="form-control" id="summernote" name="outfit_about"></textarea>
         <small class="form-text text-muted">Drabužio charakteristikos</small>
 
 
@@ -48,4 +48,9 @@
 </div>
 </div>
 </div>
+<script>
+        $(document).ready(function() {
+           $('#summernote').summernote();
+         });
+        </script>
 @endsection
