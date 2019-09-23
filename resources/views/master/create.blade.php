@@ -14,12 +14,12 @@
 
 
         <label>Vardas:</label>
-        <input type="text" name="master_name" class="form-control">
+        <input type="text" name="master_name" class="form-control" value="{{old('master_name')}}">
         <small class="form-text text-muted">Siuvėjo vardas</small>
     
     
         <label>Pavardė:</label>
-        <input type="text" name="master_surname" class="form-control">
+        <input type="text" name="master_surname" class="form-control"value="{{old('master_surname')}}">
         <small class="form-text text-muted">Siuvėjo pavardė</small>
 
 
@@ -29,8 +29,7 @@
 
 
 </div>
-    BLADE TURINYS
-  </div>
+    </div>
 </div>
 </div>
 </div>

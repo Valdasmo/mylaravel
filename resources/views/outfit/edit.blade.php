@@ -41,7 +41,6 @@
 
 </div>
 
-    BLADE TURINYS
   </div>
 </div>
 </div>

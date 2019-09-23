@@ -21,8 +21,6 @@
 @endforeach
 
 
-
-  BLADE TURINYS
 </div>
 </div>
 </div>

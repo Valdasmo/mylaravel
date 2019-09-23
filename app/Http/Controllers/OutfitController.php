@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Master;
 use App\Outfit;
 use Illuminate\Http\Request;
+use Validator;
 
 class OutfitController extends Controller
 {
@@ -41,6 +42,21 @@ class OutfitController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),
+
+        [
+            'outfit_type' => ['required', 'min:3', 'max:64'],
+            'outfit_color' => ['required', 'min:3', 'max:64'],
+            'outfit_size' => ['required', 'min:1', 'max:100'],
+            'outfit_about' => ['required', 'min:3', 'max:255']
+        ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->route('outfit.create')->withErrors($validator);
+        }
+ 
+
         $outfit = new Outfit;
         $outfit->type = $request->outfit_type;
         $outfit->color = $request->outfit_color;
