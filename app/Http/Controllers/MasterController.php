@@ -40,7 +40,7 @@ class MasterController extends Controller
         $master->name = $request->master_name;
         $master->surname = $request->master_surname;
         $master->save();
-        return redirect()->route('master.index');
+        return redirect()->route('master.index')->with('success_message', 'Sekmingai įrašytas.');
     }
 
     /**
@@ -77,7 +77,7 @@ class MasterController extends Controller
         $master->name = $request->master_name;
         $master->surname = $request->master_surname;
         $master->save();
-        return redirect()->route('master.index');
+        return redirect()->route('master.index')->with('success_message', 'Sėkmingai pakeistas.');
     }
 
     /**
@@ -89,10 +89,12 @@ class MasterController extends Controller
     public function destroy(Master $master)
     {
         if($master->masterOutfits->count()){
-            return 'Trinti negalima, nes turi drabužių';
+            return redirect()->route('master.index')->with('info_message', 'Trinti negalima, nes turi drabužių.');
+
+            // return 'Trinti negalima, nes turi drabužių';
         }
  
         $master->delete();
-        return redirect()->route('master.index');
+        return redirect()->route('master.index')->with('success_message', 'Sekmingai ištrintas.');
     }
 }
