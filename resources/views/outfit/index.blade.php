@@ -5,7 +5,22 @@
    <div class="row justify-content-center">
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">PAVADINIMAS</div>
+               <div class="card-header">PAVADINIMAS
+
+
+                  <form method="GET" action="{{route('outfit.index')}}">
+                      <select class="form-control" name="filter">
+                          @foreach ($masters as $master)
+                              <option value="{{$master->id}}" @if($master->id==$filter) selected @endif>{{$master->name}} {{$master->surname}}</option>
+                          @endforeach
+                      </select>
+
+                      <br>
+                      <button type="submit">Rodyti siuvėjo drabužį</button>
+                      </form>
+
+                      
+               </div>
                <div class="card-body">
 
 

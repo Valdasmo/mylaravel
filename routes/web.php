@@ -44,6 +44,7 @@ Route::group(['prefix' => 'masters'], function () {
     Route::post('update/{master}', 'MasterController@update')->name('master.update');
     Route::post('delete/{master}', 'MasterController@destroy')->name('master.destroy');
     Route::get('show/{master}', 'MasterController@show')->name('master.show');
+    Route::get('pdf/{master}', 'MasterController@show')->name('master.show');
 });
 
 Route::group(['prefix' => 'outfits'], function () {

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $faker = Faker::create();
+        foreach(range(1,100) as $val){
+    DB::table('masters')->insert([
+    
+    'name'=> $faker->firstNameFemale(),
+    'surname'=> $faker->lastName(),
+    // 'file'=> ''
+]);
+    }
     }
 }
