@@ -17,26 +17,32 @@ class OutfitController extends Controller
     public function index(Request $request)
     {
         $masters = Master::all();
-        // $sort = $request->get('sort', '');
+
+        // Sortiravimas ir filtravimas start
+        $sort = $request->get('sort', '');
         $filter = $request->get('filter', '');
-        // if ($sort == 'a-z') {
-        //     $outfits = Outfit::orderBy('type')->get();// db
-        // }
-        // elseif ($sort == 'z-a') {
-        //     $outfits = Outfit::orderBy('type', 'desc')->get();// db
-        // }
-        if ($filter) {
-            $outfits = Outfit::where('master_id', $filter)->get();// db
-        }
-        else {
+
+        if ($sort == 'a-z') {
+            $outfits = Outfit::orderBy('color')->get(); // db 
+            $sort = 'z-a';
+        } elseif ($sort == 'z-a') {
+            $outfits = Outfit::orderBy('color', 'desc')->get(); // db
+            $sort = 'a-z';
+        } elseif ($filter) {
+            $outfits = Outfit::where('master_id', $filter)->get(); // db
+
+        } else {
             $outfits = Outfit::all();
         }
-        
+
         return view('outfit.index', [
             'outfits' => $outfits,
             'masters' => $masters,
-            'filter' => $filter ?? 0
-            ]);
+            'filter' => $filter ?? 0,
+            'sort' => $sort
+        ]);
+
+        // Sortiravimas ir filtravimas end
     }
 
     /**
@@ -58,20 +64,21 @@ class OutfitController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),
+        $validator = Validator::make(
+            $request->all(),
 
-        [
-            'outfit_type' => ['required', 'min:3', 'max:64'],
-            'outfit_color' => ['required', 'min:3', 'max:64'],
-            'outfit_size' => ['required', 'min:1', 'max:100'],
-            'outfit_about' => ['required', 'min:3', 'max:255']
-        ]
+            [
+                'outfit_type' => ['required', 'min:3', 'max:64'],
+                'outfit_color' => ['required', 'min:3', 'max:64'],
+                'outfit_size' => ['required', 'min:1', 'max:100'],
+                'outfit_about' => ['required', 'min:3', 'max:255']
+            ]
         );
         if ($validator->fails()) {
             $request->flash();
             return redirect()->route('outfit.create')->withErrors($validator);
         }
- 
+
 
         $outfit = new Outfit;
         $outfit->type = $request->outfit_type;
